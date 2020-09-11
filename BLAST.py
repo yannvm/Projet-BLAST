@@ -47,6 +47,31 @@ def trois_lettres(fasta_seq):
 
     return fasta_mots
 
+def recup_data(FASTA_FILE):
+	data_dict = {}
+	with open(FASTA_FILE, 'r') as file :
+		num_seq = 1
+		seq_list = []
+		flag_first = 0
+		seq = ""
+		for line in file:
+			if line[0] == '>':
+				if flag_first != 0:
+					seq_list.append(seq)
+				flag_first = 1
+				seq = ""
+				data_dict[num_seq] = []
+				num_seq += 1
+			else:
+				seq = seq + line[:-1]
+		seq_list.append(seq)
+		for id_seq in range(1, len(seq_list)+1):
+			words = trois_lettres(seq_list[id_seq-1])
+			data_dict[id_seq] = words
+	return data_dict
+
+
+
 
 
 if __name__ == '__main__':
@@ -59,3 +84,6 @@ if __name__ == '__main__':
 
     input_mots = trois_lettres(input_fasta_seq)
     print(input_mots)
+    
+    data_dict = recup_data('database.fasta')
+    print(data_dict)
