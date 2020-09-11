@@ -21,7 +21,7 @@ def args():
     args = parser.parse_args()
 
     input_file = args.input
-    database_file = args.input
+    database_file = args.database
 
     return database_file, input_file
 
