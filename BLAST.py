@@ -17,15 +17,13 @@ def args():
     # Declaration of expexted arguments
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", help="Path to the input fasta file.", type=str, required=True)
+    parser.add_argument("-d", "--database", help="Path to the database file.", type=str, required=True)
     args = parser.parse_args()
 
-    # Check if the fasta files directory is valid
     input_file = args.input
-    if not os.path.isfile(input_file):
-        sys.exit(f"{input_file} does not exist.\n"
-                "Please enter a valid input fasta file.")
+    database_file = args.input
 
-    return input_file
+    return database_file, input_file
 
 
 def read_fasta(fasta_file):
@@ -46,6 +44,7 @@ def trois_lettres(fasta_seq):
         fasta_mots.append(fasta_seq[i:i+3])
 
     return fasta_mots
+
 
 def recup_data(FASTA_FILE):
 	data_dict = {}
@@ -75,7 +74,7 @@ def recup_data(FASTA_FILE):
 
 
 if __name__ == '__main__':
-    input_file = args()
+    database_file, input_file = args()
 
     input_fasta_seq = read_fasta(input_file)
     ##print("Full sequence:\n", input_fasta_seq)
@@ -85,5 +84,5 @@ if __name__ == '__main__':
     input_mots = trois_lettres(input_fasta_seq)
     print(input_mots)
     
-    data_dict = recup_data('database.fasta')
+    data_dict = recup_data(database_file)
     print(data_dict)
