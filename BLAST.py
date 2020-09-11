@@ -21,18 +21,41 @@ def args():
 
     # Check if the fasta files directory is valid
     input_file = args.input
-    if not os.path.isfile(pdb_file):
+    if not os.path.isfile(input_file):
         sys.exit(f"{input_file} does not exist.\n"
                 "Please enter a valid input fasta file.")
 
     return input_file
 
 
-
-if __name__ == '__main__':
-    input_file = args()
+def read_fasta(fasta_file):
+    input_sequence = ""
 
     with open(input_file, "r") as f_in:
         for line in f_in:
             if line[0] != ">":
-                
+                input_sequence += line.strip()
+
+    return input_sequence           
+
+
+def trois_lettres(fasta_seq):
+    input_mots = []
+
+    for i in range(len(input_fasta_seq)-3):
+        input_mots.append(input_fasta_seq[i:i+3])
+
+    return input_mots
+
+
+
+if __name__ == '__main__':
+    input_file = args()
+
+    input_fasta_seq = read_fasta(input_file)
+    print("Full sequence:\n", input_fasta_seq)
+
+    print("\n")
+
+    input_mots = trois_lettres(input_fasta_seq)
+    print("3-mers:\n", input_mots)
