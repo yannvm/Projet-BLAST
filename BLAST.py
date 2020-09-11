@@ -29,23 +29,23 @@ def args():
 
 
 def read_fasta(fasta_file):
-    input_sequence = ""
+    sequence = ""
 
-    with open(input_file, "r") as f_in:
+    with open(fasta_file, "r") as f_in:
         for line in f_in:
             if line[0] != ">":
-                input_sequence += line.strip()
+                sequence += line.strip()
 
-    return input_sequence           
+    return sequence           
 
 
 def trois_lettres(fasta_seq):
-    input_mots = []
+    fasta_mots = []
 
-    for i in range(len(input_fasta_seq)-3):
-        input_mots.append(input_fasta_seq[i:i+3])
+    for i in range(len(fasta_seq)-3):
+        fasta_mots.append(fasta_seq[i:i+3])
 
-    return input_mots
+    return fasta_mots
 
 
 
