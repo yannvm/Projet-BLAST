@@ -53,9 +53,9 @@ if __name__ == '__main__':
     input_file = args()
 
     input_fasta_seq = read_fasta(input_file)
-    print("Full sequence:\n", input_fasta_seq)
+    ##print("Full sequence:\n", input_fasta_seq)
 
-    print("\n")
+    ##print("\n")
 
     input_mots = trois_lettres(input_fasta_seq)
-    print("3-mers:\n", input_mots)
+    print(input_mots)
